@@ -12,7 +12,6 @@ command = "true"
 upload.format = "service-worker"
 
 [env.dev]
-name = "flsh-dev"
 route = "link.dev.felixoi.com/*"
 
 [env.production]
