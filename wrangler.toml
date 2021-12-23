@@ -1,3 +1,4 @@
+name = "flsh"
 type = "javascript"
 compatibility_date = "2021-12-23"
 workers_dev = false
@@ -15,5 +16,4 @@ name = "flsh-staging"
 route = "link.staging.felixoi.com/*"
 
 [env.production]
-name = "flsh"
 route = "link.felixoi.com/*"
