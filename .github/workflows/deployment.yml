@@ -37,10 +37,20 @@ jobs:
         env:
           NITRO_PRESET: cloudflare
 
+      - name: Set production environment
+        if: github.ref == 'refs/heads/dev'
+        run: echo "ENVIRONMENT=dev" >> $GITHUB_ENV
+
+      - name: Set dev environment
+        if: github.ref == 'refs/heads/production'
+        run: echo "ENVIRONMENT=production" >> $GITHUB_ENV
+
       - name: Publish to Cloudflare
         uses: cloudflare/wrangler-action@1.3.0
+        if: (github.ref == 'refs/heads/dev') || (github.ref == 'refs/heads/production')
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
+          environment: ${{ env.ENVIRONMENT }}
         env:
           CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
