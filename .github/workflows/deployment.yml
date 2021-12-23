@@ -2,8 +2,6 @@ name: deployment
 
 on:
   push:
-    branches:
-      - main
 
 jobs:
   ci:
@@ -37,11 +35,11 @@ jobs:
         env:
           NITRO_PRESET: cloudflare
 
-      - name: Set production environment
+      - name: Set dev environment
         if: github.ref == 'refs/heads/dev'
         run: echo "ENVIRONMENT=dev" >> $GITHUB_ENV
 
-      - name: Set dev environment
+      - name: Set production environment
         if: github.ref == 'refs/heads/production'
         run: echo "ENVIRONMENT=production" >> $GITHUB_ENV
 
