@@ -1,0 +1,19 @@
+type = "javascript"
+compatibility_date = "2021-12-23"
+workers_dev = false
+
+[site]
+bucket = ".output/public"
+entry-point = ".output"
+
+[build]
+command = "true"
+upload.format = "service-worker"
+
+[env.staging]
+name = "flsh-staging"
+route = "link.staging.felixoi.com/*"
+
+[env.production]
+name = "flsh"
+route = "link.felixoi.com/*"
