@@ -12,7 +12,7 @@ command = "true"
 upload.format = "service-worker"
 
 [env.dev]
-route = "link.dev.felixoi.com/*"
+route = "link-dev.felixoi.com/*"
 
 [env.production]
 route = "link.felixoi.com/*"
