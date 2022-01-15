@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import {useRequestHeaders} from "nuxt3";
+
 export default {
   data() {
     return {
@@ -18,7 +20,10 @@ export default {
   methods: {
     async fetchTest() {
       this.test = await (await fetch('https://link-dev.felixoi.com/api/urls', {
-        method: 'POST'
+        method: 'POST',
+        headers: {
+          ...useRequestHeaders()
+        }
       })).json()
     }
   }
