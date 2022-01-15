@@ -51,6 +51,7 @@ jobs:
         uses: cloudflare/wrangler-action@1.3.0
         if: (github.ref == 'refs/heads/dev') || (github.ref == 'refs/heads/production')
         with:
+          workingDirectory: 'site'
           apiToken: ${{ secrets.CF_API_TOKEN }}
           environment: ${{ env.ENVIRONMENT }}
         env:
