@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "type": "module",
+  "module": "dist/index.mjs",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^3.3.0",
+    "esbuild": "^0.14.8"
+  },
+  "dependencies": {
+    "itty-router": "^2.4.8",
+    "jose": "^4.3.8"
+  }
+}

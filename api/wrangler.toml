@@ -1,0 +1,16 @@
+name = "flsh-api"
+type = "javascript"
+compatibility_date = "2022-01-15"
+workers_dev = false
+
+[build]
+command = "node scripts/build.js"
+[build.upload]
+format = "modules"
+main = "./index.mjs"
+
+[env.dev]
+route = "link-dev.felixoi.com/api*"
+
+[env.production]
+route = "link.felixoi.com/api*"

@@ -3,6 +3,10 @@ name: deployment
 on:
   push:
 
+defaults:
+  run:
+    working-directory: ./site
+
 jobs:
   ci:
     runs-on: ${{ matrix.os }}
@@ -30,7 +34,7 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn
 
-      - name: Build
+      - name: Build Site
         run: yarn build
         env:
           NITRO_PRESET: cloudflare
@@ -43,7 +47,7 @@ jobs:
         if: github.ref == 'refs/heads/production'
         run: echo "ENVIRONMENT=production" >> $GITHUB_ENV
 
-      - name: Publish to Cloudflare
+      - name: Publish Site to Cloudflare
         uses: cloudflare/wrangler-action@1.3.0
         if: (github.ref == 'refs/heads/dev') || (github.ref == 'refs/heads/production')
         with:
