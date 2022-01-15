@@ -18,6 +18,8 @@ const validateJWT = async (jwtAssertion: string | null, aud: string, teamsUrl: s
 
 
 const CFAccess = async (request: Request, env: Env) => {
+    console.log(JSON.stringify(request.headers))
+
     const jwtPayload = await validateJWT(
         request.headers.get("CF-Access-JWT-Assertion"),
         env.AUD,
