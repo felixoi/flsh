@@ -11,4 +11,8 @@ router
     .post('/api/urls', (request: Request, env: Env) => CFAccess(request, env), UrlPost)
     .get('*', () => new Response("Not found", { status: 404 }))
 
-export const handleRequest = (request: Request) => router.handle(request)
+export default {
+    async fetch(request: Request, environment: Env, context: ExecutionContext) {
+        return router.handle(request, environment, context);
+    }
+}
