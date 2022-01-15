@@ -1,9 +1,9 @@
 {
   "private": true,
   "scripts": {
-    "site:dev": "cd site && nuxi dev",
-    "site:build": "cd site && nuxi build",
-    "site:start": "cd site && node .output/server/index.mjs"
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "start": "node .output/server/index.mjs"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^3.3.0",

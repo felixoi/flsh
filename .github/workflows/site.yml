@@ -1,7 +1,11 @@
-name: deployment
+name: site-deployment
 
 on:
   push:
+
+defaults:
+  run:
+    working-directory: ./site
 
 jobs:
   ci:
@@ -31,7 +35,7 @@ jobs:
         run: yarn
 
       - name: Build Site
-        run: yarn site:build
+        run: yarn build
         env:
           NITRO_PRESET: cloudflare
 
@@ -49,7 +53,6 @@ jobs:
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           environment: ${{ env.ENVIRONMENT }}
-          workingDirectory: 'site'
         env:
           CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}

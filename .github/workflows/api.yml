@@ -1,11 +1,11 @@
-name: deployment
+name: api-deployment
 
 on:
   push:
 
 defaults:
   run:
-    working-directory: ./site
+    working-directory: ./api
 
 jobs:
   ci:
@@ -33,11 +33,6 @@ jobs:
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn
-
-      - name: Build Site
-        run: yarn build
-        env:
-          NITRO_PRESET: cloudflare
 
       - name: Set dev environment
         if: github.ref == 'refs/heads/dev'
