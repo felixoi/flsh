@@ -1,4 +1,5 @@
 import { createRemoteJWKSet, jwtVerify } from "jose"
+import {jsonResponse} from "../utils/jsonResponse";
 
 const validateJWT = async (jwtAssertion: string | null, aud: string, teamsUrl: string) => {
     if(jwtAssertion == null) return false;
@@ -24,7 +25,11 @@ const CFAccess = async (request: Request, env: Env) => {
     );
 
     if (jwtPayload === false)
-        return new Response("Access denied.", { status: 403 });
+        return jsonResponse({
+            error: "Access Denied"
+        }, {
+            status: 403
+        });
 }
 
 export default CFAccess
