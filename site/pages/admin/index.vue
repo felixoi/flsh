@@ -5,22 +5,26 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import {authedFetch} from "~/utils/authedFetch";
+import {useCookie} from "#app";
+
 export default {
   data() {
     return {
+      jwt: null,
       test: null,
     }
   },
   mounted() {
+    this.jwt = useCookie('CF_Authorization')
     this.fetchTest()
   },
   methods: {
     async fetchTest() {
-      this.test = await (await fetch('https://link-dev.felixoi.com/api/urls', {
-        method: 'POST',
-        credentials: "same-origin"
-      })).json()
+      this.test = await (await authedFetch('https://link-dev.felixoi.com/api/urls', {
+        method: 'POST'
+      }, this.jwt)).json()
     }
   }
 }
